@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر SHOP_TA1 للألعاب والإلكترونيات</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap");
         
@@ -27,6 +28,7 @@
             margin: 2rem auto;
             max-width: 1200px;
             padding: 0 1rem;
+            position: relative;
         }
 
         .logo {
@@ -218,6 +220,266 @@
             color: #94a3b8;
         }
 
+        /* أنماط جديدة للسلة والطلبات */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #00adb5;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: #1e293b;
+            z-index: 1000;
+            transition: right 0.3s;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-container.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            color: #00adb5;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #00adb5;
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .cart-total span {
+            color: #00adb5;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            background-color: #00adb5;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #008e94;
+        }
+
+        .checkout-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #94a3b8;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: #334155;
+            border: none;
+            border-radius: 5px;
+            color: #f8fafc;
+        }
+
+        .orders-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: none;
+        }
+
+        .order-card {
+            background-color: #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .order-id {
+            color: #00adb5;
+            font-weight: bold;
+        }
+
+        .order-date {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .order-items {
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .order-total {
+            text-align: right;
+            font-weight: bold;
+            color: #00adb5;
+        }
+
+        .order-status {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        .contact-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .contact-form {
+            background-color: #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            text-align: center;
+            color: #00adb5;
+            margin-bottom: 20px;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .backdrop.active {
+            display: block;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #00adb5;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 1100;
+            display: none;
+            animation: slideIn 0.3s, slideOut 0.3s 2.7s;
+        }
+
+        @keyframes slideIn {
+            from { right: -300px; opacity: 0; }
+            to { right: 20px; opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { right: 20px; opacity: 1; }
+            to { right: -300px; opacity: 0; }
+        }
+
         @media (max-width: 768px) {
             .categories {
                 flex-direction: column;
@@ -231,45 +493,105 @@
             .hero-title {
                 font-size: 2rem;
             }
+
+            .cart-container {
+                width: 100%;
+                right: -100%;
+            }
+
+            .cart-container.active {
+                right: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="backdrop" id="backdrop"></div>
+    <div class="notification" id="notification"></div>
+    
     <header>
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#social-media">منصات التواصل</a></li>
-        <li><a href="#products">المنتجات</a></li>
-        <li><a href="#categories">الأقسام</a></li>
-        <li><a href="#my-orders">مشترياتي</a></li>
-        <li><a href="#about">من نحن</a></li>
-      </ul>
-    </nav>
-  </header>
+        <div class="logo">SHOP_TA1</div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#social-media">منصات التواصل</a></li>
+                <li><a href="#games">الألعاب</a></li>
+                <li><a href="#electronics">الإلكترونيات</a></li>
+                <li><a href="#orders" id="orders-link">قائمة طلباتك</a></li>
+                <li>
+                    <div class="cart-icon" id="cart-icon">
+                        <i class="bi bi-cart3" style="font-size: 1.5rem;"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-  
+    <!-- سلة التسوق -->
+    <div class="cart-container" id="cart-container">
+        <div class="cart-header">
+            <h3 class="cart-title">سلة التسوق</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- العناصر تضاف هنا عبر JavaScript -->
+        </div>
+        <div class="cart-total">
+            المجموع: <span id="cart-total-price">0</span> IQD
+        </div>
+        <button class="checkout-btn" id="checkout-btn">إتمام الطلب</button>
+        
+        <!-- نموذج إتمام الطلب -->
+        <div class="checkout-form" id="checkout-form">
+            <h4 style="margin-bottom: 15px; color: #00adb5;">معلومات العميل</h4>
+            <div class="form-group">
+                <label for="customer-name">الاسم الكامل</label>
+                <input type="text" id="customer-name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-phone">رقم الهاتف</label>
+                <input type="tel" id="customer-phone" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-address">العنوان (اختياري)</label>
+                <textarea id="customer-address" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="customer-notes">ملاحظات (اختياري)</label>
+                <textarea id="customer-notes" rows="3"></textarea>
+            </div>
+            <button class="checkout-btn" id="confirm-order">تأكيد الطلب</button>
+        </div>
+    </div>
 
-  
+    <main>
+        <section id="home" class="hero">
+            <h1 class="hero-title">مرحباً بكم في متجر SHOP_TA1</h1>
+            <p class="hero-subtitle">أفضل الألعاب والإلكترونيات بأفضل الأسعار</p>
+            <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="متجر إلكترونيات">
+        </section>
 
         <section id="games" class="products-section">
-            <h2 class="section-title">الألعاب الإلكترونية وشراء العملات</h2>
+            <h2 class="section-title">الألعاب الإلكترونية شحن جميع المنصات</h2>
             <div class="products-grid">
                 <!-- منتج 8800 كوينز -->
                 <div class="product-card">
                     <img src="img/img880.png" alt="8800 عملة ماينكرافت" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">8800 عملة ماينكرافت</h3>
-                        <p class="product-price">15 IQD</p>
-                        <button class="buy-btn">شراء الآن</button>
+                        <p class="product-price">15000 IQD</p>
+                        <button class="buy-btn" data-id="1" data-name="8800 عملة ماينكرافت" data-price="15000">شراء الآن</button>
                     </div>
                 </div>
-                
+
                 <!-- منتج 1720 كوينز -->
                 <div class="product-card">
                     <img src="img/img1720.png" alt="1720 عملة ماينكرافت" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">1720 عملة ماينكرافت</h3>
-                        <p class="product-price">5 IQD</p>
-                        <button class="buy-btn">شراء الآن</button>
+                        <p class="product-price">5000 IQD</p>
+                        <button class="buy-btn" data-id="2" data-name="1720 عملة ماينكرافت" data-price="5000">شراء الآن</button>
                     </div>
                 </div>
                 
@@ -278,8 +600,8 @@
                     <img src="img/img234.png" alt="1020 عملة ماينكرافت" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">1020 عملة ماينكرافت</h3>
-                        <p class="product-price">4 IQD</p>
-                        <button class="buy-btn">شراء الآن</button>
+                        <p class="product-price">4000 IQD</p>
+                        <button class="buy-btn" data-id="3" data-name="1020 عملة ماينكرافت" data-price="4000">شراء الآن</button>
                     </div>
                 </div>
                 
@@ -288,27 +610,20 @@
                     <img src="img/img24.png" alt="3500 عملة ماينكرافت" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">3500 عملة ماينكرافت</h3>
-                        <p class="product-price">10 IQD</p>
-                        <button class="buy-btn">شراء الآن</button>
+                        <p class="product-price">10000 IQD</p>
+                        <button class="buy-btn" data-id="4" data-name="3500 عملة ماينكرافت" data-price="10000">شراء الآن</button>
                     </div>
                 </div>
-            <!-- منتج 1020 كوينز -->
-            <div class="product-card">
-                <img src="img/img320.png" alt="320 عملة ماينكرافت" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">320 عملة ماينكرافت</h3>
-                    <p class="product-price">2 IQD</p>
-                    <button class="buy-btn">شراء الآن</button>
+                
+                <!-- منتج 1020 كوينز -->
+                <div class="product-card">
+                    <img src="img/img320.png" alt="320 عملة ماينكرافت" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">320 عملة ماينكرافت</h3>
+                        <p class="product-price">2000 IQD</p>
+                        <button class="buy-btn" data-id="5" data-name="320 عملة ماينكرافت" data-price="2000">شراء الآن</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-            
-            
-            
-            
-            
-            
-            
             </div>
         </section>
 
@@ -327,13 +642,21 @@
                 
                 <!-- منتج إلكتروني 2 -->
                 <div class="product-card">
-                    <img src="" alt="إلكترونيات" class="product-image">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="إلكترونيات" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">قريباً</h3>
                         <p class="product-price">-- IQD</p>
                         <button class="buy-btn" disabled>قريباً</button>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- قسم قائمة الطلبات -->
+        <section id="orders" class="orders-section">
+            <h2 class="section-title">طلباتك السابقة</h2>
+            <div id="orders-list">
+                <!-- الطلبات تضاف هنا عبر JavaScript -->
             </div>
         </section>
 
@@ -359,16 +682,271 @@
                     <a href="https://www.instagram.com/zx6sq/" target="_blank" title="instgram">
                         <i>instgram</i>
                     </a> 
-                
-                
-                
-                
-             </div>
+
+                </div>
+        </section>
+
+        <!-- قسم التواصل -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="contact-form">
+                <h3 class="contact-title">أرسل لنا رسالة</h3>
+                <div class="form-group">
+                    <label for="contact-name">اسمك</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">بريدك الإلكتروني</label>
+                    <input type="email" id="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">رسالتك</label>
+                    <textarea id="contact-message" rows="5" required></textarea>
+                </div>
+                <button class="checkout-btn" id="send-message">إرسال الرسالة</button>
+            </div>
         </section>
     </main>
 
     <footer>
         <p class="footer-text">© 2025 متجر SHOP_TA1. جميع الحقوق محفوظة.</p>
     </footer>
+
+    <script>
+        // بيانات المنتجات
+        const products = [
+            { id: 1, name: "8800 عملة ماينكرافت", price: 15000, image: "img/img880.png" },
+            { id: 2, name: "1720 عملة ماينكرافت", price: 5000, image: "img/img1720.png" },
+            { id: 3, name: "1020 عملة ماينكرافت", price: 4000, image: "img/img234.png" },
+            { id: 4, name: "3500 عملة ماينكرافت", price: 10000, image: "img/img24.png" },
+            { id: 5, name: "320 عملة ماينكرافت", price: 2000, image: "img/img320.png" }
+        ];
+
+        // سلة التسوق
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+        // عناصر DOM
+        const cartIcon = document.getElementById('cart-icon');
+        const cartContainer = document.getElementById('cart-container');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutForm = document.getElementById('checkout-form');
+        const confirmOrderBtn = document.getElementById('confirm-order');
+        const buyButtons = document.querySelectorAll('.buy-btn');
+        const ordersLink = document.getElementById('orders-link');
+        const ordersSection = document.getElementById('orders');
+        const ordersList = document.getElementById('orders-list');
+        const backdrop = document.getElementById('backdrop');
+        const notification = document.getElementById('notification');
+        const sendMessageBtn = document.getElementById('send-message');
+
+        // فتح/إغلاق سلة التسوق
+        cartIcon.addEventListener('click', () => {
+            cartContainer.classList.add('active');
+            backdrop.classList.add('active');
+            renderCartItems();
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartContainer.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+
+        backdrop.addEventListener('click', () => {
+            cartContainer.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+
+        // إضافة منتج إلى السلة
+        buyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.disabled) return;
+                
+                const id = parseInt(button.dataset.id);
+                const name = button.dataset.name;
+                const price = parseInt(button.dataset.price);
+                const image = button.parentElement.parentElement.querySelector('img').src;
+                
+                addToCart(id, name, price, image);
+                showNotification(`تمت إضافة ${name} إلى السلة`);
+            });
+        });
+
+        function addToCart(id, name, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, image, quantity: 1 });
+            }
+            
+            updateCart();
+        }
+
+        // عرض عناصر السلة
+        function renderCartItems() {
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>السلة فارغة</p>';
+                cartTotalPrice.textContent = '0';
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; margin-left: 10px;">
+                    <div class="cart-item-info">
+                        <h4 class="cart-item-title">${item.name}</h4>
+                        <p class="cart-item-price">${item.price} IQD × ${item.quantity}</p>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">&times;</button>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalPrice.textContent = total.toLocaleString();
+            
+            // إضافة أحداث لأزرار الحذف
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(button.dataset.id);
+                    removeFromCart(id);
+                });
+            });
+        }
+
+        // حذف عنصر من السلة
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+            showNotification('تم حذف المنتج من السلة');
+        }
+
+        // تحديث السلة
+        function updateCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            renderCartItems();
+        }
+
+        // إتمام الطلب
+        checkoutBtn.addEventListener('click', () => {
+            checkoutForm.style.display = 'block';
+            checkoutBtn.style.display = 'none';
+        });
+
+        confirmOrderBtn.addEventListener('click', () => {
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const address = document.getElementById('customer-address').value;
+            const notes = document.getElementById('customer-notes').value;
+            
+            if (!name || !phone) {
+                showNotification('الرجاء إدخال الاسم ورقم الهاتف', 'error');
+                return;
+            }
+            
+            const order = {
+                id: Date.now(),
+                date: new Date().toLocaleString(),
+                items: [...cart],
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                customer: { name, phone, address, notes },
+                status: 'قيد المراجعة'
+            };
+            
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            cart = [];
+            updateCart();
+            
+            checkoutForm.style.display = 'none';
+            checkoutBtn.style.display = 'block';
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-address').value = '';
+            document.getElementById('customer-notes').value = '';
+            
+            cartContainer.classList.remove('active');
+            backdrop.classList.remove('active');
+            
+            showNotification('تم استلام طلبك بنجاح! سنتصل بك قريباً.');
+        });
+
+        // عرض الطلبات
+        ordersLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            ordersSection.style.display = 'block';
+            renderOrders();
+        });
+
+        function renderOrders() {
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p>لا توجد طلبات سابقة</p>';
+                return;
+            }
+            
+            ordersList.innerHTML = orders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-id">طلب #${order.id}</span>
+                        <span class="order-date">${order.date}</span>
+                    </div>
+                    <div class="order-items">
+                        ${order.items.map(item => `
+                            <div class="order-item">
+                                <span>${item.name} (${item.quantity})</span>
+                                <span>${item.price * item.quantity} IQD</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="order-total">المجموع: ${order.total} IQD</div>
+                    <div class="order-status">الحالة: ${order.status}</div>
+                </div>
+            `).join('');
+        }
+
+        // إرسال رسالة تواصل
+        sendMessageBtn.addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const message = document.getElementById('contact-message').value;
+            
+            if (!name || !email || !message) {
+                showNotification('الرجاء ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            // هنا يمكنك إضافة كود لإرسال الرسالة إلى الخادم
+            // سنكتفي بعرض إشعار للمستخدم
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+            
+            showNotification('شكراً لك! تم استلام رسالتك وسنتواصل معك قريباً.');
+        });
+
+        // عرض الإشعارات
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.style.backgroundColor = type === 'error' ? '#ef4444' : '#00adb5';
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // تهيئة الصفحة
+        updateCart();
+    </script>
 </body>
 </html>
